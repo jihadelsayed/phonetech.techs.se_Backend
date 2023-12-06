@@ -1,6 +1,6 @@
 module.exports = {
   USER: "postgres",
-  HOST: "db.iqgyjwzutcobtwtoyoyp.supabase.co",
+  HOST: "db.techs.se",
   DB: "phonetechDB",
   PASSWORD: "f5Q+?-nbnX#KGY_",
   port: 5432,
