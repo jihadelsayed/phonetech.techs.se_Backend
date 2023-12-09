@@ -7,14 +7,14 @@ const { roleMiddleware } = require("../middleware/role.middleware");
 const signupMiddleware = require("../middleware/signup.middleware");
 
 module.exports = function (router) {
-  router.post('/signup',signupMiddleware, signupController);
-
-  router.post(
-    "/signin",
-    signController
+  console.log(
+    "----------------------------------------------------------------"
   );
+  router.post("/signup", signupMiddleware, signupController);
 
-  router.post('/username/request', requestUsername);
-  router.post('/password/reset/request', requestResetPassword);
-  router.post('/password/reset', resetPassword);
+  router.post("/signin", signController);
+
+  router.post("/username/request", requestUsername);
+  router.post("/password/reset/request", requestResetPassword);
+  router.post("/password/reset", resetPassword);
 };

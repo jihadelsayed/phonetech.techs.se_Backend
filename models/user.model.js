@@ -1,94 +1,97 @@
 module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define("users", {
-    firstName: {
-      type: Sequelize.STRING
+    name: {
+      type: Sequelize.STRING,
     },
     lastName: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: true,
     },
     telephone: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: true,
     },
     email: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     username: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: true,
     },
     password: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     contactPersonId: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     companyOrgNumber: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     companyName: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     moms_VAT_nr: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     accountStatus: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     address: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     postNumber: {
       type: Sequelize.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     city: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     country: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     secondaryAddress: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     secondaryPostNr: {
       type: Sequelize.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     secondaryCity: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     secondaryCountry: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     country: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     gender: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     job_title: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
     },
     deleteDate: {
       type: Sequelize.DATE,
-      allowNull: true
+      allowNull: true,
     },
     employmentDate: {
       type: Sequelize.DATE,
-      allowNull: true
+      allowNull: true,
     },
   });
 

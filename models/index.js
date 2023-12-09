@@ -1,28 +1,23 @@
 const config = require("../config/db.config.js");
 
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(
-  config.DB,
-  config.USER,
-  config.PASSWORD,
-  {
-    host: config.HOST,
-    dialect: config.dialect,
-    dialectOptions: {
-      native: true,
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
+const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
+  host: config.HOST,
+  dialect: config.dialect,
+  dialectOptions: {
+    native: true,
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
     },
-    pool: {
-      max: config.pool.max,
-      min: config.pool.min,
-      acquire: config.pool.acquire,
-      idle: config.pool.idle
-    }
   },
-);
+  pool: {
+    max: config.pool.max,
+    min: config.pool.min,
+    acquire: config.pool.acquire,
+    idle: config.pool.idle,
+  },
+});
 
 const db = {};
 
@@ -45,67 +40,66 @@ db.feedback = require("./feedback.model.js")(sequelize, Sequelize);
 db.role.belongsToMany(db.user, {
   through: "user_roles",
   foreignKey: "roleId",
-  otherKey: "userId"
+  otherKey: "userId",
 });
 db.user.belongsToMany(db.role, {
   through: "user_roles",
   foreignKey: "userId",
-  otherKey: "roleId"
+  otherKey: "roleId",
 });
 
 // product and category many to many relationship
 db.category.belongsToMany(db.product, {
   through: "category_products",
   foreignKey: "categoryId",
-  otherKey: "productId"
+  otherKey: "productId",
 });
 db.product.belongsToMany(db.category, {
   through: "category_products",
   foreignKey: "productId",
-  otherKey: "categoryId"
+  otherKey: "categoryId",
 });
 // product and order one to many relationship
 db.product.belongsToMany(db.order, {
   through: "product_orders",
   foreignKey: "productId",
-  otherKey: "orderId"
+  otherKey: "orderId",
 });
 
 // product and category many to many relationship
 db.image.belongsToMany(db.product, {
   through: "product_images",
   foreignKey: "categoryId",
-  otherKey: "productId"
+  otherKey: "productId",
 });
-// product has many images 
+// product has many images
 db.product.belongsToMany(db.image, {
   through: "product_images",
   foreignKey: "productId",
-  as: 'images'
+  as: "images",
 });
-
 
 // order products belong to many product and order
 db.product.belongsToMany(db.orderProduct, {
   through: "orderProduct_products",
   foreignKey: "productId",
-  otherKey: "orderProductId"
+  otherKey: "orderProductId",
 });
 db.orderProduct.belongsToMany(db.product, {
   through: "orderProduct_products",
   foreignKey: "orderProductId",
-  otherKey: "productId"
+  otherKey: "productId",
 });
 
 db.order.belongsToMany(db.orderProduct, {
   through: "orderProduct_orders",
   foreignKey: "orderId",
-  otherKey: "orderProductId"
+  otherKey: "orderProductId",
 });
 db.orderProduct.belongsToMany(db.order, {
   through: "orderProduct_orders",
   foreignKey: "orderProductId",
-  otherKey: "orderId"
+  otherKey: "orderId",
 });
 
 //db.user.hasMany(db.order);
@@ -114,15 +108,21 @@ db.orderProduct.belongsToMany(db.order, {
 db.order.belongsToMany(db.user, {
   through: "user_orders",
   foreignKey: "orderId",
-  otherKey: "userId"
+  otherKey: "userId",
 });
 db.user.belongsToMany(db.order, {
   through: "user_orders",
   foreignKey: "userId",
-  otherKey: "orderId"
+  otherKey: "orderId",
 });
 
-
-db.ROLES = ["superuser", "admin", "installer","employee", "company", "privateCustomer"];
+db.ROLES = [
+  "superuser",
+  "admin",
+  "installer",
+  "employee",
+  "company",
+  "privateCustomer",
+];
 
 module.exports = db;

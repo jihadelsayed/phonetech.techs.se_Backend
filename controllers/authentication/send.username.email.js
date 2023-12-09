@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 //const sendgridTransport = require('nodemailer-sendgrid-transporter');
 
-module.exports = async (req, res, email, username, firstName) => {
+module.exports = async (req, res, email, username, name) => {
   console.log(process.env.transporterUser);
 
   const transporter = nodemailer.createTransport(
@@ -19,7 +19,7 @@ module.exports = async (req, res, email, username, firstName) => {
   );
   // send an email to the user with the reset token
   // you can use any mailer service of your choice here
-  // console.log('Kära ' + firstName + ',\n\n'
+  // console.log('Kära ' + name + ',\n\n'
   // + 'Vi har fått en begäran om att hämta ditt användarnamn. Vi förstår att det kan vara lätt att glömma din inloggningsinformation och vi finns här för att hjälpa dig.\n\n'
   // + 'Ditt användarnamn är: '
   // + username
@@ -34,7 +34,7 @@ module.exports = async (req, res, email, username, firstName) => {
     subject: "Användarnamn för phonetech techs inloggningar",
     text:
       "Kära " +
-      firstName +
+      name +
       ",\n\n" +
       "Vi har fått en begäran om att hämta ditt användarnamn. Vi förstår att det kan vara lätt att glömma din inloggningsinformation och vi finns här för att hjälpa dig.\n\n" +
       "Ditt användarnamn är: " +
