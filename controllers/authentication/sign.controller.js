@@ -9,8 +9,7 @@ var bcrypt = require("bcryptjs");
 
 module.exports = async (req, res, next) => {
   console.log("---------------------------------");
-  console.log(req.body);
-  User.findOne({
+  await User.findOne({
     where: {
       [Op.or]: [
         { email: req.body.email },
@@ -19,12 +18,12 @@ module.exports = async (req, res, next) => {
       ],
     },
   })
-    .then((user) => {
+    .then(async (user) => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
       }
 
-      var passwordIsValid = bcrypt.compareSync(
+      var passwordIsValid = await bcrypt.compareSync(
         req.body.password,
         user.password
       );
@@ -36,19 +35,18 @@ module.exports = async (req, res, next) => {
         });
       }
 
-      var token = jwt.sign({ id: user.id }, config.secret, {
+      var token = await jwt.sign({ id: user.id }, config.secret, {
         expiresIn: 464000, // 4 days in seconds
       });
-
       var authorities = [];
       user.getRoles().then((roles) => {
         for (let i = 0; i < roles.length; i++) {
           authorities.push(roles[i].name);
         }
+        const userInfo = JSON.parse(JSON.stringify(user));
+        delete userInfo.password; 
         res.status(200).send({
-          id: user.id,
-          username: user.username,
-          email: user.email,
+          userInfo: JSON.stringify(userInfo),
           roles: authorities,
           accessToken: token,
         });

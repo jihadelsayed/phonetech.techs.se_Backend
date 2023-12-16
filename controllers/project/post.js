@@ -56,7 +56,7 @@ module.exports = async (req, res, next) => {
       version: "v4",
       auth: authClientObject,
     });
-    const spreadsheetId = "1W46UA0mwWddr0rZ8ZH3zJi9U_kS6qDK6bTmyPfbsKdg";
+    const spreadsheetId = "";
     // insert data into a sheet
     await googleSheetsInstance.spreadsheets.values.append({
       auth, //auth object
