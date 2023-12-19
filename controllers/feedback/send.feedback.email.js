@@ -52,8 +52,8 @@ module.exports = async (req, res) => {
   const mailOptions = {
     //from: process.env.transporterUser,
     from: req.body.email,
-    to: "hello@techs.se",
-    //to: "jihad.sayed@techs.se",
+    //to: "hello@techs.se",
+    to: "jihad.alsayed@techs.se",
     subject: req.body.subject ? req.body.subject : "There is no subject",
     text: `
       Name: ${req.body.name}
